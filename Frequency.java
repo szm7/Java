@@ -2,18 +2,16 @@ import java.util.Scanner;
 
 public class Frequency {
     static int valK;
-    static int n ;
+    static int n;
     static int val[] = new int[n];
-    static int valFre[] = new int[10];
+    static int valFre[] = new int[n];
     static int[] topVal = new int[valK];
     static int[] topValFre = new int[valK];
 
     void input() {
-        Scanner read = new Scanner(System.in);
-        System.out.println("Enter the size of the Array");
-        n = read.nextInt();
+        System.out.println("N value"+n);
         int val[] = new int[n];
-        
+        Scanner read = new Scanner(System.in);
         System.out.println("Enter the Array values");
         for (int i = 0; i < n; i++) {
             val[i] = read.nextInt();
@@ -24,8 +22,9 @@ public class Frequency {
     }
 
     public static void checkFrequency() {
+        int valFre[] = new int[n];
+        System.out.println(""+val.length);
         int count;
-        System.err.println(""+n);
         for (int i = 0; i < n; i++) {
             count = 0;
             for (int j = 0; j < n; j++) {
@@ -60,6 +59,10 @@ public class Frequency {
     }
 
     public static void main(String args[]) {
+
+        Scanner read = new Scanner(System.in);
+        System.out.println("Enter the size of the Array");
+        n = read.nextInt();
         Frequency f1 = new Frequency();
         f1.input();
         Frequency.checkFrequency();
