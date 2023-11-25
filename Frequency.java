@@ -1,70 +1,69 @@
 import java.util.Scanner;
 
 public class Frequency {
-    static int valK;
     static int n;
-    static int val[] = new int[n];
-    static int valFre[] = new int[n];
-    static int[] topVal = new int[valK];
-    static int[] topValFre = new int[valK];
+    static int val[];
 
-    void input() {
-        System.out.println("N value"+n);
-        int val[] = new int[n];
-        Scanner read = new Scanner(System.in);
-        System.out.println("Enter the Array values");
-        for (int i = 0; i < n; i++) {
-            val[i] = read.nextInt();
-        }
-        System.out.println("Enter the value of K: ");
-        valK = read.nextInt();
-        
-    }
 
-    public static void checkFrequency() {
+    public static void checkFrequency(int k) {
         int valFre[] = new int[n];
+        int v=0;
         System.out.println(""+val.length);
-        int count;
+        int freq;
+        int maxFre = 0;
         for (int i = 0; i < n; i++) {
-            count = 0;
+            freq = 0;
             for (int j = 0; j < n; j++) {
                 if (val[i] == val[j]) {
-                    ++count;
+                    ++freq;
                 }
             }
-            valFre[i] = count;
-        }
-        for (int i = 0; i < valFre.length; i++) {
-            System.out.print(valFre[i] + " ");
-        }
-        for (int i = 0; i < valFre.length; i++) {
-            int frequency = valFre[i];
+            if (freq >= 1) {
+                int flag = 0;
+                for (int x = 0; x <= v; x++) {
+                    if (val[i] == valFre[x])
+                        flag = 1;
+                }
 
-            for (int j = 0; j < valK; j++) {
-                if (frequency > topValFre[j]) {
-                    for (int m = valK - 1; m > j; m--) {
-                        topValFre[m] = topValFre[m - 1];
-                        topVal[m] = topVal[m - 1];
+                if (flag == 0) {
+                    if (freq > maxFre || (freq == maxFre && val[i] > valFre[0])) {
+                        maxFre = freq;
+                        for (int x = v; x > 0; x--) {
+                            valFre[x] = valFre[x - 1];
+                        }
+                        valFre[0] = val[i];
+                    } else {
+                        v++;
+                        valFre[v] = val[i];
                     }
-                    topValFre[j] = frequency;
-                    topVal[j] = i;
-                    break;
                 }
             }
         }
-        System.out.println("Top " + valK + " elements based on frequency:");
-        for (int i = 0; i < valK; i++) {
-            System.out.println("Element: " + topVal[i] + ", Frequency: " + topValFre[i]);
+        System.out.println("Top " + k + " elements with the highest occurrence:");
+        for (int j = 0; j < k && j <= v; j++) {
+            System.out.println(valFre[j]);
         }
+       
+        
     }
 
     public static void main(String args[]) {
 
-        Scanner read = new Scanner(System.in);
-        System.out.println("Enter the size of the Array");
-        n = read.nextInt();
-        Frequency f1 = new Frequency();
-        f1.input();
-        Frequency.checkFrequency();
+
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Enter the number of elements");
+        n = input.nextInt();
+        val = new int[n];
+
+        System.out.println("Enter the elements");
+        for (int i = 0; i < n; i++) {
+            val[i] = input.nextInt();
+        }
+
+        System.out.println("Enter the value of K");
+        int valK = input.nextInt();
+
+        Frequency.checkFrequency(valK);
     }
 }
