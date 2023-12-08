@@ -7,6 +7,7 @@ class Employee {
     double bonus;
     double totalBonus;
     String type;
+    double annualEar;
 
     Employee(int id, String name, String designation) {
         this.empID = id;
@@ -21,12 +22,18 @@ class Employee {
         System.out.println("Designation: " + empDes);
         System.out.println(type + ":" + (type == "Hourly" ? hourSalary : weekSalary));
         System.out.println("Bonus Rate:" + bonus);
-        System.out.println("Total Salary:" + totalBonus);
+        System.out.println(type == "Hourly" ? "" : "Annual Earnings: " + annualEar);
+        System.out.println("Total Salary(including bonus):" + totalBonus);
         System.out.println("--------------------------");
     }
 
-    void calculateBonus(double bonus, double salValue) {
-        this.totalBonus = salValue * bonus;
+    void calculateBonus(double salValue, double totbon) {
+        this.totalBonus = salValue + totbon;
+
+    }
+
+    void AnnualEarnings(double ear) {
+        this.annualEar = ear * 12;
     }
 }
 
@@ -41,36 +48,42 @@ class HourlyEmployee extends Employee {
 
     void calculateBonus() {
         this.bonus = 1.5;
-        super.calculateBonus(bonus, hourSalary);
+        double totbon = hourSalary * bonus;
+        super.calculateBonus(hourSalary, totbon);
     }
+
 }
 
 class SalariedEmployee extends Employee {
     double mnthSal;
+
     SalariedEmployee(double monthlySalary, String name, int id, String designation) {
         super(id, name, designation);
         this.mnthSal = monthlySalary;
         this.weekSalary = monthlySalary / 4;
         this.type = "Weekly";
     }
-    double AnnualEarnings() {
-        return mnthSal * 12;
-    }
 
 }
 
 class ExecutiveEmployee extends SalariedEmployee {
     double mnthSal;
-    double bonusPer = 8;
+
     ExecutiveEmployee(double monthlySalary, String name, int id, String designation) {
         super(monthlySalary, name, id, designation);
-        this.mnthSal=monthlySalary;
+        this.mnthSal = monthlySalary;
 
     }
+
+    void AnnualEarnings() {
+        super.AnnualEarnings(mnthSal);
+    }
+
     void calculateBonus() {
-        this.bonus = 3.5;
-        double executiveBonus = mnthSal * (bonusPer / 100);
-        super.calculateBonus(bonus, executiveBonus);
+        this.bonus = 0.02;
+        double annualSalary = this.annualEar;
+        double totbon = annualSalary * bonus;
+        super.calculateBonus(annualSalary, totbon);
     }
 }
 
@@ -81,8 +94,9 @@ class Emp {
         e1.displayEmployeeDetails();
 
         ExecutiveEmployee e2 = new ExecutiveEmployee(45000, "rahul k", 3, "Project Manager");
+        e2.AnnualEarnings();
         e2.calculateBonus();
         e2.displayEmployeeDetails();
-       
+
     }
 }
