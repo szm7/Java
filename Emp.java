@@ -89,11 +89,11 @@ class ExecutiveEmployee extends SalariedEmployee {
 
 class Emp {
     public static void main(String args[]) {
-        HourlyEmployee e1 = new HourlyEmployee(45.2, 9, "rahul", 5, "Intern");
+        HourlyEmployee e1 = new HourlyEmployee(45.2, 9, "Rohit", 5, "Intern");
         e1.calculateBonus();
         e1.displayEmployeeDetails();
 
-        ExecutiveEmployee e2 = new ExecutiveEmployee(45000, "rahul k", 3, "Project Manager");
+        ExecutiveEmployee e2 = new ExecutiveEmployee(45000, "Iyer", 3, "Project Manager");
         e2.AnnualEarnings();
         e2.calculateBonus();
         e2.displayEmployeeDetails();
