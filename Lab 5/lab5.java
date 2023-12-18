@@ -60,9 +60,9 @@ class BankC implements BankInterface {
 public class lab5 {
     public static void main(String[] args) {
 
-        BankA bankA = new BankA(10000);
-        BankB bankB = new BankB(150000);
-        BankC bankC = new BankC(200000);
+        BankInterface bankA = new BankA(10000);
+        BankInterface bankB = new BankB(150000);
+        BankInterface bankC = new BankC(200000);
         System.out.println("--------------------------------------------");
         System.out.println("Bank A:");
         System.out.println("--------------------------------------------");
