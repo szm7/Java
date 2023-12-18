@@ -6,10 +6,10 @@ interface BankInterface {
 }
 
 class BankA implements BankInterface {
-    private double balance;
+    double balance;
 
     public BankA(double balance) {
-        
+
         this.balance = balance;
     }
 
@@ -24,7 +24,7 @@ class BankA implements BankInterface {
 }
 
 class BankB implements BankInterface {
-    private double balance;
+    double balance;
 
     public BankB(double balance) {
         this.balance = balance;
@@ -41,7 +41,7 @@ class BankB implements BankInterface {
 }
 
 class BankC implements BankInterface {
-    private double balance;
+    double balance;
 
     public BankC(double balance) {
         this.balance = balance;
