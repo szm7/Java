@@ -1,8 +1,9 @@
 import java.util.Scanner;
+import java.util.Random;
 
 public class PCP {
 
-    final String[] buffer = new String[5];
+    int[] buffer = new int[5];
     int count = 0;
 
     public static void main(String[] args) {
@@ -40,14 +41,10 @@ public class PCP {
                     System.out.println(e);
                 }
             }
-            Scanner sc = new Scanner(System.in);
-            System.out.println("Enter data");
-            String data = sc.nextLine();
-            if ("exit".equalsIgnoreCase(data)) {
-                System.exit(0);
-            }
-            buffer[count++] = data;
-            System.out.println("Produced Data : " + data);
+            Random rand = new Random();
+            int newData = Math.abs(rand.nextInt());
+            buffer[count++] = newData;
+            System.out.println("Produced Data: " + newData);
             buffer.notifyAll();
         }
     }
@@ -63,9 +60,10 @@ public class PCP {
                     System.out.println(e);
                 }
             }
-            String data = buffer[--count];
+            int data = buffer[--count];
             System.out.println("Consumed Data : " + data);
             buffer.notifyAll();
+
         }
     }
 }
