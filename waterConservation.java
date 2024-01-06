@@ -38,7 +38,7 @@ class CityBlockConservation extends RainySeasonConservation {
             // }
             // }
 
-            int highestVal = highestValue > secondHighestValue ? secondHighestValue : highestValue;
+            //int highestVal = highestValue > secondHighestValue ? secondHighestValue : highestValue;
             int tappedWater = 0;
             if (startIndex < endIndex) {
                 int temp = endIndex;
