@@ -33,9 +33,9 @@ class Product {
 
 // Order class
 class Order {
-    private String orderId;
-    private Customer customer;
-    private ArrayList<Product> products;
+    String orderId;
+     Customer customer;
+     ArrayList<Product> products;
 
     public Order(String orderId, Customer customer, ArrayList<Product> products) {
         this.orderId = orderId;
