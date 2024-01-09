@@ -38,12 +38,14 @@ class Inventory {
 
         do {
             System.out.println("\nInventory Menu:");
+            System.out.println("--------------------");
             System.out.println("1. Place Order");
             System.out.println("2. Update Order");
             System.out.println("3. Inventery Availability");
             System.out.println("4. Display All Products");
             System.out.println("5. Order Status");
             System.out.println("6. Exit");
+            System.out.println("--------------------");
             System.out.print("Enter your choice: ");
 
             choice = scanner.nextInt();
@@ -62,7 +64,6 @@ class Inventory {
                 case 4:
                     displayInventory();
                     break;
-
                 case 5:
                     trackOrder();
                     break;
@@ -72,7 +73,6 @@ class Inventory {
                 default:
                     System.out.println("Invalid choice. Please enter a valid option.");
             }
-
         } while (choice < 6);
     }
 
@@ -125,9 +125,10 @@ class Inventory {
         int pdId = scanner.nextInt();
 
         Product product = Inventory.get(pdId);
-        int qty = product.quantity;
         System.out.println("--------------------");
-        System.out.println("Available Quantity: " + qty);
+        System.out.println("Product Name: " + product.name);
+        System.out.println("Available Quantity: " + product.quantity);
+        System.out.println("--------------------");
 
     }
 
@@ -136,14 +137,22 @@ class Inventory {
         int pdId = scanner.nextInt();
 
         Order order = orderHistory.get(pdId);
-        String sts = order.status;
-        System.out.println("--------------------");
-        System.out.println("Order Status of (" + pdId + ") : " + sts);
 
+        if (order == null) {
+            System.out.println("--------------------");
+            System.out.println("No Order Placed");
+            System.out.println("--------------------");
+        } else {
+            String sts = order.status;
+            System.out.println(order + sts);
+            System.out.println("--------------------");
+            System.out.println("Order Status of (" + pdId + ") : " + sts);
+            System.out.println("--------------------");
+        }
     }
 
     public static void displayInventory() {
-        System.out.println("Inventory:");
+        System.out.println("--------------------");
 
         for (Map.Entry<Integer, Product> entry : Inventory.entrySet()) {
             int productId = entry.getKey();
@@ -151,8 +160,9 @@ class Inventory {
 
             System.out.println("Product ID: " + productId);
             System.out.println("Product Details: " + product.name);
-            System.out.println("--------------------");
+
         }
+        System.out.println("--------------------");
     }
 
 }
