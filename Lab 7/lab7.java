@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
 
-// Customer class
 class Customer {
     private String customerId;
     private String name;
@@ -16,10 +15,8 @@ class Customer {
         return customerId;
     }
 
-    // Other getters and setters for customer details
 }
 
-// Product class
 class Product {
     private String productId;
     private String name;
@@ -32,8 +29,6 @@ class Product {
     public String getProductId() {
         return productId;
     }
-
-    // Other getters and setters for product details
 }
 
 // Order class
@@ -56,10 +51,8 @@ class Order {
         return products;
     }
 
-    // Other getters and setters for order details
 }
 
-// AmazonCRMSystem class
 class AmazonCRMSystem {
     private ArrayList<Customer> customers = new ArrayList<>();
     private ArrayList<Product> products = new ArrayList<>();
@@ -77,8 +70,7 @@ class AmazonCRMSystem {
 
     public void placeOrder(Order order) {
         orders.add(order);
-        // Assuming you want to add products from the order to the uniqueProducts
-        // HashSet
+
         uniqueProducts.addAll(order.getProducts());
     }
 
@@ -123,13 +115,13 @@ class AmazonCRMSystem {
                 System.out.println("Product added successfully!");
                 break;
             case 4:
-                // Implement update product details
+
                 break;
             case 5:
-                // Implement order tracking
+
                 break;
             case 6:
-                // Implement viewing order history
+
                 break;
             case 0:
                 System.out.println("Exiting program. Goodbye!");
