@@ -1,9 +1,11 @@
 import java.util.*;
-
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 class Ama {
-    ArrayList<Customer> customerList = new ArrayList<>();
-    ArrayList<Product> productList = new ArrayList<>();
-    ArrayList<Order> orderList = new ArrayList<>();
+    // ArrayList<Customer> customerList = new ArrayList<>();
+    // ArrayList<Product> productList = new ArrayList<>();
+    // ArrayList<Order> orderList = new ArrayList<>();
     private static final HashMap<String, Customer> customerMap = new HashMap<>();
     HashMap<String, Product> productMap = new HashMap<>();
     static Scanner scanner = new Scanner(System.in);
@@ -58,18 +60,17 @@ class Ama {
         System.out.println("User added successfully!");
     }
 
-    static void viewUser() {
+    private static void viewUser() {
         System.out.println("--------------------");
         if (customerMap.isEmpty()) {
             System.out.println("customer details empty");
         } else {
             for (Map.Entry<String, Customer> entry : customerMap.entrySet()) {
-                String usrName = entry.getKey();
-                Customer cs = entry.getValue();
+                
 
-                System.out.println("User Name: " + usrName);
-                System.out.println("Customer Name : " + cs.getName());
-                System.out.println("Ph No : " + cs.phNo);
+                System.out.println("User Name: " + entry.getKey());
+                System.out.println("Customer Name : " + entry.getValue());
+                
 
             }
             System.out.println("--------------------");
@@ -93,14 +94,6 @@ class Customer {
     public Customer(String name, String phNo) {
         this.name = name;
         this.phNo = phNo;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getPhNo() {
-        return phNo;
     }
 
     @Override
