@@ -1,9 +1,11 @@
-import java.util.*;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.ArrayList;
+
 class Ama {
-    // ArrayList<Customer> customerList = new ArrayList<>();
+    static ArrayList<Customer> customerList = new ArrayList<>();
     // ArrayList<Product> productList = new ArrayList<>();
     // ArrayList<Order> orderList = new ArrayList<>();
     private static final HashMap<String, Customer> customerMap = new HashMap<>();
@@ -17,7 +19,7 @@ class Ama {
             System.out.println("\n Menu :");
             System.out.println("1. Add User");
             System.out.println("2. All Customers");
-            System.out.println("3. Retrieve Contact");
+            System.out.println("3. Add Product");
             System.out.println("4. Display All Contacts");
             System.out.println("5. Exit");
             System.out.print("Enter your choice: ");
@@ -33,16 +35,18 @@ class Ama {
                     viewUser();
                     break;
                 case 3:
-                    retrieveContact();
+                    addProduct();
                     break;
                 case 4:
                     displayContacts();
                     break;
                 case 5:
-                    System.out.println("Exiting Address Book. Goodbye!");
+                    System.out.println("Exiting");
+                    break;
 
                 default:
                     System.out.println("Invalid choice. Please enter a valid option.");
+                    break;
             }
 
         } while (choice < 5);
@@ -56,8 +60,14 @@ class Ama {
         System.out.print("Enter Mobile Number : ");
         String ph = scanner.nextLine();
         Customer cs = new Customer(Name, ph);
-        customerMap.put(usName, cs);
-        System.out.println("User added successfully!");
+        if (customerMap.containsKey(usName)) {
+            System.out.println("User already exists!");
+        } else {
+            customerMap.put(usName, cs);
+            customerList.add(cs);
+            System.out.println("User added successfully!");
+        }
+
     }
 
     private static void viewUser() {
@@ -66,19 +76,14 @@ class Ama {
             System.out.println("customer details empty");
         } else {
             for (Map.Entry<String, Customer> entry : customerMap.entrySet()) {
-                
-
                 System.out.println("User Name: " + entry.getKey());
-                System.out.println("Customer Name : " + entry.getValue());
-                
-
+                System.out.println("Customer Details: " + entry.getValue());
             }
             System.out.println("--------------------");
         }
-
     }
 
-    static void retrieveContact() {
+    static void addProduct() {
 
     }
 
@@ -99,26 +104,27 @@ class Customer {
     @Override
     public String toString() {
         return "Customer{" +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", phone='" + phNo + '\'' +
                 '}';
     }
-
 }
 
 class Product {
 
     String productName;
+    String id;
 
-    public Product(String productName) {
-
+    public Product(String productName, String id) {
+        this.id = id;
         this.productName = productName;
     }
 
     @Override
     public String toString() {
         return "Product{" +
-                ", productName='" + productName + '\'' +
+                "productId='" + id + '\'' +
+                "productName='" + productName + '\'' +
                 '}';
     }
 
