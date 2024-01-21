@@ -1,15 +1,24 @@
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeSet;
 import java.util.ArrayList;
 
 class Ama {
-    static ArrayList<Customer> customerList = new ArrayList<>();
-    // ArrayList<Product> productList = new ArrayList<>();
-    // ArrayList<Order> orderList = new ArrayList<>();
-    private static final HashMap<String, Customer> customerMap = new HashMap<>();
-    HashMap<String, Product> productMap = new HashMap<>();
+    private static ArrayList<Customer> customers;
+    private ArrayList<Order> orders;
+    private ArrayList<Product> products;
+    private static HashMap<String, Customer> customerMap;
+    private HashMap<Integer, Product> productMap;
+    private HashMap<Customer, HashSet<Product>>  customerproductMap;
+    private TreeSet<Customer> sortedCustomers;
+    // static ArrayList<Customer> customerList = new ArrayList<>();
+    // // ArrayList<Product> productList = new ArrayList<>();
+    // // ArrayList<Order> orderList = new ArrayList<>();
+    // private static final HashMap<String, Customer> customerMap = new HashMap<>();
+    // HashMap<String, Product> productMap = new HashMap<>();
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -64,7 +73,7 @@ class Ama {
             System.out.println("User already exists!");
         } else {
             customerMap.put(usName, cs);
-            customerList.add(cs);
+            customers.add(cs);
             System.out.println("User added successfully!");
         }
 
